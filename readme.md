@@ -2,14 +2,14 @@ STRUCTURE QUERY LANGUAGE(SQL)
 
    1. SQL: Structured Query Language, used to access and manipulate data.
    2. SQL used CRUD operations to communicate with DB.
-    1. CREATE - execute INSERT statements to insert new tuple into the relation.
-    2. READ - Read data already in the relations.
-    3. UPDATE - Modify already inserted data in the relation.
-    4. DELETE - Delete specific data point/tuple/row or multiple rows.
+      1. CREATE - execute INSERT statements to insert new tuple into the relation.
+      2. READ - Read data already in the relations.
+      3. UPDATE - Modify already inserted data in the relation.
+      4. DELETE - Delete specific data point/tuple/row or multiple rows.
   3. SQL is not DB, is a query language.
   4. What is RDBMS? (Relational Database Management System)
-    Software that enable us to implement designed relational model.
-    e.g., MySQL, MS SQL, Oracle, IBM etc.
+      Software that enable us to implement designed relational model.
+      e.g., MySQL, MS SQL, Oracle, IBM etc.
   4. Table/Relation is the simplest form of data storage object in R-DB.
   5. MySQL is open-source RDBMS, and it uses SQL for all CRUD operations
   6. MySQL used client-server model, where client is CLI or frontend that used services provided by MySQL server.
@@ -385,6 +385,7 @@ MySQL VIEWS----
      6. DROP VIEW IF EXISTS view_name;
      7. CREATE VIEW Trainer AS SELECT c.course_name, c.trainer, t.email FROM courses c, contact t WHERE c.id = t.id; (View using Join clause).
      NOTE: We can also import/export table schema from files (.csv or json).
+
 
 
 
