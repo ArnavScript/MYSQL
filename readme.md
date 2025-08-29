@@ -171,63 +171,62 @@ CONSTRAINTS (DDL)
  EXAMPLE--
  
     CREATE TABLE ORDER (
-    id INT PRIMARY KEY,
-    delivery_date DATE,
-    order_placed_date DATE,
-    cust_id INT,
-    FOREIGN KEY (cust_id) REFERENCES customer(id)
+      id INT PRIMARY KEY,
+      delivery_date DATE,
+      order_placed_date DATE,
+      cust_id INT,
+      FOREIGN KEY (cust_id) REFERENCES customer(id)
     );
 
     3. UNIQUE
-        Unique, can be null, table can have multiple unique attributes.
-        
+        Unique, can be null, table can have multiple unique attributes.  
         CREATE TABLE customer (
-    email VARCHAR(1024) UNIQUE,  
-    );
+       email VARCHAR(1024) UNIQUE,  
+     );
 
     4. CHECK
-    CREATE TABLE customer (  
-    CONSTRAINT age_check CHECK (age > 12), 
+     CREATE TABLE customer (  
+       CONSTRAINT age_check CHECK (age > 12), 
      );
    
     “age_check”, can also avoid this, MySQL generates name of constraint automatically.
     
     5. DEFAULT
-    Set default value of the column.
-    CREATE TABLE account (
-    saving-rate DOUBLE NOT NULL DEFAULT 4.25,
-     );
-    An attribute can be PK and FK both in a table.
+      Set default value of the column.
+      CREATE TABLE account (
+        saving-rate DOUBLE NOT NULL DEFAULT 4.25,
+      );
+      An attribute can be PK and FK both in a table.
 
 
 ALTER OPERATIONS -
 
      Changes schema 
      1. ADD
-     Add new column.
-     ALTER TABLE table_name ADD new_col_name datatype ADD new_col_name_2 datatype;
-     e.g., ALTER TABLE customer ADD age INT NOT NULL;
+       Add new column.
+       ALTER TABLE table_name ADD new_col_name datatype ADD new_col_name_2 datatype;
+       e.g., ALTER TABLE customer ADD age INT NOT NULL;
 
      2. MODIFY
-     Change datatype of an attribute.
-     ALTER TABLE table-name MODIFY col-name col-datatype;
-     E.g., VARCHAR TO CHAR
-     ALTER TABLE customer MODIFY name CHAR(1024);
+       Change datatype of an attribute.
+       ALTER TABLE table-name MODIFY col-name col-datatype;
+       E.g., VARCHAR TO CHAR
+       ALTER TABLE customer MODIFY name CHAR(1024);
 
      3. CHANGE COLUMN
-     Rename column name.
-     ALTER TABLE table-name CHANGE COLUMN old-col-name new-col-name new-col-datatype;
-     e.g., ALTER TABLE customer CHANGE COLUMN name customer-name VARCHAR(1024);
+       Rename column name.
+       ALTER TABLE table-name CHANGE COLUMN old-col-name new-col-name new-col-datatype;
+       e.g., ALTER TABLE customer CHANGE COLUMN name customer-name VARCHAR(1024);
 
      4. DROP COLUMN
-     Drop a column completely.
-     ALTER TABLE table-name DROP COLUMN col-name;
-     e.g., ALTER TABLE customer DROP COLUMN middle-name;
+       Drop a column completely.
+       ALTER TABLE table-name DROP COLUMN col-name;
+       e.g., ALTER TABLE customer DROP COLUMN middle-name;
 
      5. RENAME
-     Rename table name itself.
-     ALTER TABLE table-name RENAME TO new-table-name;
-     e.g., ALTER TABLE customer RENAME TO customer-details;
+       Rename table name itself.
+       ALTER TABLE table-name RENAME TO new-table-name;
+       e.g., ALTER TABLE customer RENAME TO customer-details;
 
 
 DATA MANIPULATION LANGUAGE (DML)-
@@ -242,7 +241,7 @@ DATA MANIPULATION LANGUAGE (DML)-
    UPDATE student SET standard = standard + 1;
    
 4. ON UPDATE CASCADE
-    Can be added to the table while creating constraints. Suppose there is a situation where we have two tables such that primary key of one table is the foreign key for another table. if we update the primary key of the first table then using the ON UPDATE CASCADE foreign key of the second table automatically get updated.
+    Can be added to the table while creating constraints. Suppose there is a situation where we have two tables such that primary key of one        table is the foreign key for another table. if we update the primary key of the first table then using the ON UPDATE CASCADE foreign key of     the second table automatically get updated.
    
 5. DELETE
    DELETE FROM table-name WHERE id = 1;
@@ -275,50 +274,50 @@ DATA MANIPULATION LANGUAGE (DML)-
 
 JOINING TABLES-
 
-   All RDBMS are relational in nature, we refer to other tables to get meaningful outcomes.
-   FK are used to do reference to other table.
+  1. All RDBMS are relational in nature, we refer to other tables to get meaningful outcomes.
+  2. FK are used to do reference to other table.
    
-  1. INNER JOIN
-    Returns a resultant table that has matching values from both the tables or all the tables.
-    SELECT column-list FROM table1 INNER JOIN table2 ON condition1
-    INNER JOIN table3 ON condition2;
-    Alias in MySQL (AS)
-    Aliases in MySQL is used to give a temporary name to a table or a column in a table for the purpose of a particular query. It works as a nickname for expressing the tables or column names. It makes the query short and neat.
-   SELECT col_name AS alias_name FROM table_name;
-   SELECT col_name1, col_name2,... FROM table_name AS alias_name;
+  3. INNER JOIN
+    1. Returns a resultant table that has matching values from both the tables or all the tables.
+    2. SELECT column-list FROM table1 INNER JOIN table2 ON condition1
+    3. INNER JOIN table3 ON condition2;
+    4. Alias in MySQL (AS)
+      Aliases in MySQL is used to give a temporary name to a table or a column in a table for the purpose of a particular query. It works as a        nickname for expressing the tables or column names. It makes the query short and neat.
+    5. SELECT col_name AS alias_name FROM table_name;
+    6. SELECT col_name1, col_name2,... FROM table_name AS alias_name;
 
-2. OUTER JOIN --
+  4. OUTER JOIN 
 
    1. LEFT JOIN
-   This returns a resulting table that all the data from left table and the matched data from the right table.
-   SELECT columns FROM table LEFT JOIN table2 ON Join_Condition;
+     1. This returns a resulting table that all the data from left table and the matched data from the right table.
+     2. SELECT columns FROM table LEFT JOIN table2 ON Join_Condition;
 
    2. RIGHT JOIN
-   This returns a resulting table that all the data from right table and the matched data from the left table.
-   SELECT columns FROM table RIGHT JOIN table2 ON join_cond;
+    1.  This returns a resulting table that all the data from right table and the matched data from the left table.
+    2.  SELECT columns FROM table RIGHT JOIN table2 ON join_cond;
 
    3. FULL JOIN
-   This returns a resulting table that contains all data when there is a match on left or right table data.
-   Emulated in MySQL using LEFT and RIGHT JOIN.
-   LEFT JOIN UNION RIGHT JOIN.
-   SELECT columns FROM table1 as t1 LEFT JOIN table2 as t2 ON t1.id = t2.id
-   UNION
-   SELECT columns FROM table1 as t1 RIGHT JOIN table2 as t2 ON t1.id = t2.id;
-   UNION ALL, can also be used this will duplicate values as well while UNION gives unique values.
+      1. This returns a resulting table that contains all data when there is a match on left or right table data.
+      2. Emulated in MySQL using LEFT and RIGHT JOIN.
+      3. LEFT JOIN UNION RIGHT JOIN.
+      4. SELECT columns FROM table1 as t1 LEFT JOIN table2 as t2 ON t1.id = t2.id
+         UNION
+         SELECT columns FROM table1 as t1 RIGHT JOIN table2 as t2 ON t1.id = t2.id;
+      5. UNION ALL, can also be used this will duplicate values as well while UNION gives unique values.
 
-  4. CROSS JOIN
-    This returns all the cartesian products of the data present in both tables. Hence, all possible variations are reflected in the output.
-     Used rarely in practical purpose.
-    Table-1 has 10 rows and table-2 has 5, then resultant would have 50 rows.
-    SELECT column-lists FROM table1 CROSS JOIN table2;
+   4. CROSS JOIN
+     1. This returns all the cartesian products of the data present in both tables. Hence, all possible variations are reflected in the output.
+       used rarely in practical purpose.
+     2. Table-1 has 10 rows and table-2 has 5, then resultant would have 50 rows.
+     3. SELECT column-lists FROM table1 CROSS JOIN table2;
 
-  5. SELF JOIN
-   1. It is used to get the output from a particular table when the same table is joined to itself.
-   2. Used very less.
-   3. Emulated using INNER JOIN.
-   4. SELECT columns FROM table as t1 INNER JOIN table as t2 ON t1.id = t2.id;
-   5. Join without using join keywords.
-   6. SELECT * FROM table1, table2 WHERE condition;
+   5. SELF JOIN
+     1. It is used to get the output from a particular table when the same table is joined to itself.
+     2. Used very less.
+     3. Emulated using INNER JOIN.
+     4. SELECT columns FROM table as t1 INNER JOIN table as t2 ON t1.id = t2.id;
+     5. Join without using join keywords.
+     6. SELECT * FROM table1, table2 WHERE condition;
       e.g., SELECT artist_name, album_name, year_recordedFROM artist, albumWHERE artist.id = album.artist_id   
    
 
@@ -329,23 +328,23 @@ SET OPERATIONS----
       Always gives distinct rows.
       
     1. UNION
-       Combines two or more SELECT statements.
-       SELECT * FROM table1
-       UNION
-       SELECT * FROM table2;
-       Number of column, order of column must be same for table1 and table2.
+      1. Combines two or more SELECT statements.
+      2. SELECT * FROM table1
+         UNION
+        SELECT * FROM table2;
+      3. Number of column, order of column must be same for table1 and table2.
 
     2. INTERSECT
-      Returns common values of the tables.
-      Emulated.
-      SELECT DISTINCT column-list FROM table-1 INNER JOIN table-2 USING(join_cond);
-      SELECT DISTINCT * FROM table1 INNER JOIN table2 ON USING(id);
+      1. Returns common values of the tables.
+      2. Emulated.
+      3. SELECT DISTINCT column-list FROM table-1 INNER JOIN table-2 USING(join_cond);
+      4. SELECT DISTINCT * FROM table1 INNER JOIN table2 ON USING(id);
 
     3. MINUS
-      This operator returns the distinct row from the first table that does not occur in the second  table.
-      Emulated.
-      SELECT column_list FROM table1 LEFT JOIN table2 ON condition WHERE table2.column_name IS NULL;
-      e.g., SELECT id FROM table-1 LEFT JOIN table-2 USING(id) WHERE table-2.id IS NULL;
+      1. This operator returns the distinct row from the first table that does not occur in the second  table.
+      2. Emulated.
+      3. SELECT column_list FROM table1 LEFT JOIN table2 ON condition WHERE table2.column_name IS NULL;
+      4.  e.g., SELECT id FROM table-1 LEFT JOIN table-2 USING(id) WHERE table-2.id IS NULL;
 
 
 
@@ -382,6 +381,7 @@ SUB QUERIES----
      6. DROP VIEW IF EXISTS view_name;
      7. CREATE VIEW Trainer AS SELECT c.course_name, c.trainer, t.email FROM courses c, contact t WHERE c.id = t.id; (View using Join clause).
      NOTE: We can also import/export table schema from files (.csv or json).
+
 
 
 
