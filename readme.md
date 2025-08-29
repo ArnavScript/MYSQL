@@ -1,48 +1,49 @@
 STRUCTURE QUERY LANGUAGE(SQL)
 
-1. SQL: Structured Query Language, used to access and manipulate data.
-2. SQL used CRUD operations to communicate with DB.
+   1. SQL: Structured Query Language, used to access and manipulate data.
+   2. SQL used CRUD operations to communicate with DB.
     1. CREATE - execute INSERT statements to insert new tuple into the relation.
     2. READ - Read data already in the relations.
     3. UPDATE - Modify already inserted data in the relation.
     4. DELETE - Delete specific data point/tuple/row or multiple rows.
-3. SQL is not DB, is a query language.
-4. What is RDBMS? (Relational Database Management System)
-   Software that enable us to implement designed relational model.
-   e.g., MySQL, MS SQL, Oracle, IBM etc.
-5. Table/Relation is the simplest form of data storage object in R-DB.
-4. MySQL is open-source RDBMS, and it uses SQL for all CRUD operations
-5. MySQL used client-server model, where client is CLI or frontend that used services provided by MySQL server.
-6. Difference between SQL and MySQL
-   SQL is Structured Query language used to perform CRUD operations in R-DB, while MySQL is a RDBMS used tostore, manage and administrate DB (provided by itself) using SQL.
-7. SQL DATA TYPES (Ref: https://www.w3schools.com/sql/sql_datatypes.asp)
-    In SQL DB, data is stored in the form of tables.
-    Data can be of different types, like INT, CHAR etc.
-
-8. DATATYPE Description--
+  3. SQL is not DB, is a query language.
+  4. What is RDBMS? (Relational Database Management System)
+    Software that enable us to implement designed relational model.
+    e.g., MySQL, MS SQL, Oracle, IBM etc.
+  4. Table/Relation is the simplest form of data storage object in R-DB.
+  5. MySQL is open-source RDBMS, and it uses SQL for all CRUD operations
+  6. MySQL used client-server model, where client is CLI or frontend that used services provided by MySQL server.
+  7. Difference between SQL and MySQL
+      SQL is Structured Query language used to perform CRUD operations in R-DB, while MySQL is a RDBMS used tostore, manage and administrate DB         (provided by itself) using SQL.
+   8. SQL DATA TYPES (Ref: https://www.w3schools.com/sql/sql_datatypes.asp)
+      In SQL DB, data is stored in the form of tables.
+      Data can be of different types, like INT, CHAR etc.
 
 
-CHAR          string(0-255), string with size = (0, 255], e.g.,CHAR(251)
-VARCHAR       string(0-255)
-TINYTEXT      String(0-255)
-TEXT          string(0-65535)
-BLOB          string(0-65535)
-MEDIUMTEXT    string(0-16777215)
-MEDIUMBLOB    string(0-16777215)
-LONGTEXT      string(0-4294967295)
-LONGBLOB      string(0-4294967295)
-TINYINT       integer(-128 to 127)
-SMALLINT      integer(-32768 to 32767)
-MEDIUMINT     integer(-8388608 to 8388607)
-INT           integer(-2147483648 to 2147483647)
-BIGINT        integer (-9223372036854775808 to 9223372036854775807)
-FLOAT         Decimal with precision to 23 digits
-DOUBLE        Decimal with 24 to 53 digits
+  9. DATATYPE Description--
 
-10. Size: TINY < SMALL < MEDIUM < INT < BIGINT.
-11. Variable length Data types e.g., VARCHAR, are better to use as they occupy space  equal    the   actual data size.
-12. Values can also be unsigned e.g., INT UNSIGNED.
-13. Types of SQL commands:
+    CHAR          string(0-255), string with size = (0, 255], e.g.,CHAR(251)
+    VARCHAR       string(0-255)
+    TINYTEXT      String(0-255)
+    TEXT          string(0-65535)
+    BLOB          string(0-65535)
+    MEDIUMTEXT    string(0-16777215)
+    MEDIUMBLOB    string(0-16777215)
+    LONGTEXT      string(0-4294967295) 
+    LONGBLOB      string(0-4294967295)
+    TINYINT       integer(-128 to 127)
+    SMALLINT      integer(-32768 to 32767)
+    MEDIUMINT     integer(-8388608 to 8388607)
+    INT           integer(-2147483648 to 2147483647)
+    BIGINT        integer (-9223372036854775808 to 9223372036854775807)
+    FLOAT         Decimal with precision to 23 digits
+    DOUBLE        Decimal with 24 to 53 digits
+
+    10. Size: TINY < SMALL < MEDIUM < INT < BIGINT.
+    11. Variable length Data types e.g., VARCHAR, are better to use as they occupy space  equal    the   actual data size.
+    12. Values can also be unsigned e.g., INT UNSIGNED.
+    13. Types of SQL commands:
+    
     DDL (data definition language): defining relation schema.
     1. CREATE: create table, DB, view.
     2. ALTER TABLE: modification in table structure. e.g, change column datatype or add/remove     columns.
@@ -51,11 +52,11 @@ DOUBLE        Decimal with 24 to 53 digits
     5. RENAME: rename DB name, table name, column name etc.
 
     DRL/DQL (data retrieval language / data query language):
-     retrieve data from the tables.
+    retrieve data from the tables.
     1. SELECT
     
     DML (data modification language):
-     use to perform modifications in the DB
+    use to perform modifications in the DB
     1. INSERT: insert data into a relation
     2. UPDATE: update relation data.
     3. DELETE: delete row(s) from the relation.
@@ -159,7 +160,7 @@ DATA RETRIEVAL LANGUAGE (DRL)
       6. WHERE can be used with SELECT, UPDATE & DELETE keywords while GROUP BY used with SELECT.
 
 
-    CONSTRAINTS (DDL)
+CONSTRAINTS (DDL)
 
     1. Primary Key
        PK is not null, unique and only one per table.
@@ -199,8 +200,8 @@ DATA RETRIEVAL LANGUAGE (DRL)
       An attribute can be PK and FK both in a table.
 
    
-    ALTER OPERATIONS -
- 
+ ALTER OPERATIONS 
+
      Changes schema 
      1. ADD
        Add new column.
@@ -229,7 +230,7 @@ DATA RETRIEVAL LANGUAGE (DRL)
        e.g., ALTER TABLE customer RENAME TO customer-details;
 
 
-    DATA MANIPULATION LANGUAGE (DML)-
+DATA MANIPULATION LANGUAGE (DML)-
 
     1. INSERT
       INSERT INTO table-name(col1, col2, col3) VALUES (v1, v2, v3), (val1, val2, val3);
@@ -272,7 +273,7 @@ DATA RETRIEVAL LANGUAGE (DRL)
 
 
  
-    JOINING TABLES-
+JOINING TABLES-
 
     1. All RDBMS are relational in nature, we refer to other tables to get meaningful outcomes.
     2. FK are used to do reference to other table.
@@ -322,7 +323,7 @@ DATA RETRIEVAL LANGUAGE (DRL)
    
 
 
-     SET OPERATIONS--
+ SET OPERATIONS--
 
       Used to combine multiple select statements.
       Always gives distinct rows.
@@ -349,7 +350,7 @@ DATA RETRIEVAL LANGUAGE (DRL)
 
 
     
-    SUB QUERIES----
+SUB QUERIES----
 
   
     1. Outer query depends on inner query.
@@ -374,7 +375,8 @@ DATA RETRIEVAL LANGUAGE (DRL)
 
 
 
-      MySQL VIEWS----
+MySQL VIEWS----
+      
      1. A view is a database object that has no values. Its contents are based on the basetable.    It contains rows and columns similar to the         real table.
      2. In MySQL, the View is a virtual table created by a query by joining one or more tables. It is operated similarly to the base table but          does not contain any data of its own.
      3. The View and table have one main difference that the views are definitions built on top of other tables (or views). If any changes              occur in the underlying table, the same changes reflected in the View also.
@@ -383,6 +385,7 @@ DATA RETRIEVAL LANGUAGE (DRL)
      6. DROP VIEW IF EXISTS view_name;
      7. CREATE VIEW Trainer AS SELECT c.course_name, c.trainer, t.email FROM courses c, contact t WHERE c.id = t.id; (View using Join clause).
      NOTE: We can also import/export table schema from files (.csv or json).
+
 
 
 
