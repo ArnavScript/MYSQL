@@ -277,16 +277,18 @@ JOINING TABLES-
 
    All RDBMS are relational in nature, we refer to other tables to get meaningful outcomes.
    FK are used to do reference to other table.
-1. INNER JOIN
-   Returns a resultant table that has matching values from both the tables or all the tables.
-   SELECT column-list FROM table1 INNER JOIN table2 ON condition1
+   
+  1. INNER JOIN
+    Returns a resultant table that has matching values from both the tables or all the tables.
+    SELECT column-list FROM table1 INNER JOIN table2 ON condition1
     INNER JOIN table3 ON condition2;
-   Alias in MySQL (AS)
-   Aliases in MySQL is used to give a temporary name to a table or a column in a table for the purpose of a particular query. It works as a nickname for expressing the tables or column names. It makes the query short and neat.
+    Alias in MySQL (AS)
+    Aliases in MySQL is used to give a temporary name to a table or a column in a table for the purpose of a particular query. It works as a nickname for expressing the tables or column names. It makes the query short and neat.
    SELECT col_name AS alias_name FROM table_name;
    SELECT col_name1, col_name2,... FROM table_name AS alias_name;
 
-2. OUTER JOIN
+2. OUTER JOIN --
+
    1. LEFT JOIN
    This returns a resulting table that all the data from left table and the matched data from the right table.
    SELECT columns FROM table LEFT JOIN table2 ON Join_Condition;
@@ -321,7 +323,8 @@ JOINING TABLES-
    
 
 
-    SET OPERATIONS----
+SET OPERATIONS----
+
       Used to combine multiple select statements.
       Always gives distinct rows.
       
@@ -345,7 +348,9 @@ JOINING TABLES-
       e.g., SELECT id FROM table-1 LEFT JOIN table-2 USING(id) WHERE table-2.id IS NULL;
 
 
-    SUB QUERIES----
+
+    
+SUB QUERIES----
    1. Outer query depends on inner query.
    2. Alternative to joins.
    3. Nested queries.
@@ -377,6 +382,7 @@ JOINING TABLES-
      6. DROP VIEW IF EXISTS view_name;
      7. CREATE VIEW Trainer AS SELECT c.course_name, c.trainer, t.email FROM courses c, contact t WHERE c.id = t.id; (View using Join clause).
      NOTE: We can also import/export table schema from files (.csv or json).
+
 
 
 
