@@ -19,7 +19,9 @@ STRUCTURE QUERY LANGUAGE(SQL)
     In SQL DB, data is stored in the form of tables.
     Data can be of different types, like INT, CHAR etc.
 
-8. DATATYPE Description
+8. DATATYPE Description--
+
+
 CHAR          string(0-255), string with size = (0, 255], e.g.,CHAR(251)
 VARCHAR       string(0-255)
 TINYTEXT      String(0-255)
@@ -37,10 +39,10 @@ BIGINT        integer (-9223372036854775808 to 9223372036854775807)
 FLOAT         Decimal with precision to 23 digits
 DOUBLE        Decimal with 24 to 53 digits
 
-9. Size: TINY < SMALL < MEDIUM < INT < BIGINT.
-10. Variable length Data types e.g., VARCHAR, are better to use as they occupy space  equal    the   actual data size.
-11. Values can also be unsigned e.g., INT UNSIGNED.
-12. Types of SQL commands:
+10. Size: TINY < SMALL < MEDIUM < INT < BIGINT.
+11. Variable length Data types e.g., VARCHAR, are better to use as they occupy space  equal    the   actual data size.
+12. Values can also be unsigned e.g., INT UNSIGNED.
+13. Types of SQL commands:
     DDL (data definition language): defining relation schema.
     1. CREATE: create table, DB, view.
     2. ALTER TABLE: modification in table structure. e.g, change column datatype or add/remove     columns.
@@ -48,19 +50,23 @@ DOUBLE        Decimal with 24 to 53 digits
     4. TRUNCATE: remove all the tuples from the table.
     5. RENAME: rename DB name, table name, column name etc.
 
-    DRL/DQL (data retrieval language / data query language): retrieve data from the tables.
+    DRL/DQL (data retrieval language / data query language):
+     retrieve data from the tables.
     1. SELECT
     
-    DML (data modification language): use to perform modifications in the DB
+    DML (data modification language):
+     use to perform modifications in the DB
     1. INSERT: insert data into a relation
     2. UPDATE: update relation data.
     3. DELETE: delete row(s) from the relation.
 
-    DCL (Data Control language): grant or revoke authorities from user.
+    DCL (Data Control language):
+    grant or revoke authorities from user.
     1. GRANT: access privileges to the DB
     2. REVOKE: revoke user access privileges.
     
-    TCL (Transaction control language): to manage transactions done in the DB
+    TCL (Transaction control language):
+    to manage transactions done in the DB
     1. START TRANSACTION: begin a transaction
     2. COMMIT: apply all the changes and end transaction
     3. ROLLBACK: discard changes and end transaction
@@ -68,7 +74,9 @@ DOUBLE        Decimal with 24 to 53 digits
  
 
 MANAGING DB (DDL)
+
     Creation of DB
+    
     1. CREATE DATABASE IF NOT EXISTS db-name;
     2. USE db-name; //need to execute to choose on which DB CREATE TABLE etc commands will be executed.
      //make switching between DBs possible.
@@ -77,7 +85,9 @@ MANAGING DB (DDL)
     5. SHOW TABLES; //list tables in the selected DB.
 
 DATA RETRIEVAL LANGUAGE (DRL)
+
     1. Syntax: SELECT <set of column names> FROM <table_name>;
+    
     2. Order of execution from RIGHT to LEFT.
        Q. Can we use SELECT keyword without using FROM clause?
           Yes, using DUAL Tables.
@@ -85,6 +95,7 @@ DATA RETRIEVAL LANGUAGE (DRL)
           e.g., SELECT 55 + 11;
                 SELECT now();
                 SELECT ucase(); etc.
+                
     3. WHERE
        Reduce rows based on given conditions.
        E.g., SELECT * FROM customer WHERE age > 18;
@@ -115,6 +126,7 @@ DATA RETRIEVAL LANGUAGE (DRL)
        ORDER BY <column-name> DESC;
        DESC = Descending and ASC = Ascending
        e.g., SELECT * FROM customer ORDER BY name DESC;
+       
     10. GROUP BY
        GROUP BY Clause is used to collect data from multiple records and group the result by one or more column. It is generally used in a SELECT statement.
        Groups into category based on column given.
@@ -148,6 +160,7 @@ DATA RETRIEVAL LANGUAGE (DRL)
 
 
 CONSTRAINTS (DDL)
+
     1. Primary Key
        PK is not null, unique and only one per table.
 
@@ -155,26 +168,28 @@ CONSTRAINTS (DDL)
        FK refers to PK of other table.
        Each relation can having any number of FK.
        
- EXAMPLE---
+ EXAMPLE--
+ 
     CREATE TABLE ORDER (
     id INT PRIMARY KEY,
     delivery_date DATE,
     order_placed_date DATE,
     cust_id INT,
     FOREIGN KEY (cust_id) REFERENCES customer(id)
-   );
+    );
 
     3. UNIQUE
         Unique, can be null, table can have multiple unique attributes.
         
         CREATE TABLE customer (
     email VARCHAR(1024) UNIQUE,  
-   );
+    );
 
     4. CHECK
     CREATE TABLE customer (  
     CONSTRAINT age_check CHECK (age > 12), 
-   );
+     );
+   
     “age_check”, can also avoid this, MySQL generates name of constraint automatically.
     
     5. DEFAULT
@@ -185,7 +200,8 @@ CONSTRAINTS (DDL)
     An attribute can be PK and FK both in a table.
 
 
-ALTER OPERATIONS---
+ALTER OPERATIONS -
+
      Changes schema 
      1. ADD
      Add new column.
@@ -214,7 +230,8 @@ ALTER OPERATIONS---
      e.g., ALTER TABLE customer RENAME TO customer-details;
 
 
-DATA MANIPULATION LANGUAGE (DML)
+DATA MANIPULATION LANGUAGE (DML)-
+
 1. INSERT
     INSERT INTO table-name(col1, col2, col3) VALUES (v1, v2, v3), (val1, val2, val3);
    
@@ -256,7 +273,8 @@ DATA MANIPULATION LANGUAGE (DML)
 
 
 
-JOINING TABLES--
+JOINING TABLES-
+
    All RDBMS are relational in nature, we refer to other tables to get meaningful outcomes.
    FK are used to do reference to other table.
 1. INNER JOIN
@@ -359,5 +377,6 @@ JOINING TABLES--
      6. DROP VIEW IF EXISTS view_name;
      7. CREATE VIEW Trainer AS SELECT c.course_name, c.trainer, t.email FROM courses c, contact t WHERE c.id = t.id; (View using Join clause).
      NOTE: We can also import/export table schema from files (.csv or json).
+
 
 
