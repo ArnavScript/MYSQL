@@ -88,22 +88,28 @@ DATA RETRIEVAL LANGUAGE (DRL)
     3. WHERE
        Reduce rows based on given conditions.
        E.g., SELECT * FROM customer WHERE age > 18;
+       
     4. BETWEEN
        SELECT * FROM customer WHERE age between 0 AND 100;
        In the above e.g., 0 and 100 are inclusive.
+       
     5. IN
        Reduces OR conditions;
        e.g., SELECT * FROM officers WHERE officer_name IN ('Lakshay', ‘Maharana Pratap',‘Deepika’); 
+       
     6. AND/OR/NOT
        AND: WHERE cond1 AND cond2
        OR: WHERE cond1 OR cond2
        NOT: WHERE col_name NOT IN (1,2,3,4);
+       
     7. IS NULL
        e.g., SELECT * FROM customer WHERE prime_status is NULL;
+       
     8. Pattern Searching / Wildcard (‘%’, ‘_’)
        ‘%’, any number of character from 0 to n. Similar to ‘*’ asterisk in regex.
        ‘_’, only one character.
        SELECT * FROM customer WHERE name LIKE ‘%p_’;
+       
     9. ORDER BY
        Sorting the data retrieved using WHERE clause.
        ORDER BY <column-name> DESC;
@@ -120,6 +126,7 @@ DATA RETRIEVAL LANGUAGE (DRL)
        3. AVG()
        4. MIN()
        5. MAX()
+       
     11. DISTINCT
         Find distinct values in the table.
         SELECT DISTINCT(col_name) FROM table_name;
@@ -147,6 +154,7 @@ CONSTRAINTS (DDL)
     2. Foreign Key
        FK refers to PK of other table.
        Each relation can having any number of FK.
+       
  EXAMPLE---
     CREATE TABLE ORDER (
     id INT PRIMARY KEY,
@@ -158,26 +166,21 @@ CONSTRAINTS (DDL)
 
     3. UNIQUE
         Unique, can be null, table can have multiple unique attributes.
+        
         CREATE TABLE customer (
-   …
     email VARCHAR(1024) UNIQUE,  
-   …
    );
 
     4. CHECK
     CREATE TABLE customer (  
-    …
     CONSTRAINT age_check CHECK (age > 12), 
-    …
    );
     “age_check”, can also avoid this, MySQL generates name of constraint automatically.
     
     5. DEFAULT
     Set default value of the column.
     CREATE TABLE account (
-     …
     saving-rate DOUBLE NOT NULL DEFAULT 4.25,
-     …
      );
     An attribute can be PK and FK both in a table.
 
@@ -214,13 +217,17 @@ ALTER OPERATIONS---
 DATA MANIPULATION LANGUAGE (DML)
 1. INSERT
     INSERT INTO table-name(col1, col2, col3) VALUES (v1, v2, v3), (val1, val2, val3);
-2. UPDATE
+   
+3. UPDATE
    UPDATE table-name SET col1 = 1, col2 = ‘abc’ WHERE id = 1;
+   
 2. Update multiple rows e.g.,
    UPDATE student SET standard = standard + 1;
-3. ON UPDATE CASCADE
+   
+4. ON UPDATE CASCADE
     Can be added to the table while creating constraints. Suppose there is a situation where we have two tables such that primary key of one table is the foreign key for another table. if we update the primary key of the first table then using the ON UPDATE CASCADE foreign key of the second table automatically get updated.
-4. DELETE
+   
+5. DELETE
    DELETE FROM table-name WHERE id = 1;
    DELETE FROM table-name; //all rows will be deleted.
    DELETE CASCADE - (to overcome DELETE constraint of Referential constraints)
@@ -231,7 +238,8 @@ DATA MANIPULATION LANGUAGE (DML)
      cust_id INT,
      FOREIGN KEY(cust_id) REFERENCES customer(id) ON DELETE CASCADE
  );
-5. ON DELETE NULL - (can FK have null values?)
+
+6. ON DELETE NULL - (can FK have null values?)
     CREATE TABLE ORDER (
     order_id int PRIMARY KEY,
     delivery_date DATE,
@@ -239,7 +247,7 @@ DATA MANIPULATION LANGUAGE (DML)
     FOREIGN KEY(cust_id) REFERENCES customer(id) ON DELETE SET NULL
    );
 
-6. REPLACE
+7. REPLACE
    Primarily used for already present tuple in a table.
    As UPDATE, using REPLACE with the help of WHERE clause in PK, then that row will be replaced.
    As INSERT, if there is no duplicate data new tuple will be inserted.
@@ -254,8 +262,7 @@ JOINING TABLES--
 1. INNER JOIN
    Returns a resultant table that has matching values from both the tables or all the tables.
    SELECT column-list FROM table1 INNER JOIN table2 ON condition1
-    INNER JOIN table3 ON condition2
-   …;
+    INNER JOIN table3 ON condition2;
    Alias in MySQL (AS)
    Aliases in MySQL is used to give a temporary name to a table or a column in a table for the purpose of a particular query. It works as a nickname for expressing the tables or column names. It makes the query short and neat.
    SELECT col_name AS alias_name FROM table_name;
@@ -299,6 +306,7 @@ JOINING TABLES--
     SET OPERATIONS----
       Used to combine multiple select statements.
       Always gives distinct rows.
+      
     1. UNION
        Combines two or more SELECT statements.
        SELECT * FROM table1
@@ -351,4 +359,5 @@ JOINING TABLES--
      6. DROP VIEW IF EXISTS view_name;
      7. CREATE VIEW Trainer AS SELECT c.course_name, c.trainer, t.email FROM courses c, contact t WHERE c.id = t.id; (View using Join clause).
      NOTE: We can also import/export table schema from files (.csv or json).
+
 
