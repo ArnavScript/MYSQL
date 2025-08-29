@@ -159,7 +159,7 @@ DATA RETRIEVAL LANGUAGE (DRL)
       6. WHERE can be used with SELECT, UPDATE & DELETE keywords while GROUP BY used with SELECT.
 
 
-CONSTRAINTS (DDL)
+    CONSTRAINTS (DDL)
 
     1. Primary Key
        PK is not null, unique and only one per table.
@@ -168,7 +168,7 @@ CONSTRAINTS (DDL)
        FK refers to PK of other table.
        Each relation can having any number of FK.
        
- EXAMPLE--
+    EXAMPLE--
  
     CREATE TABLE ORDER (
       id INT PRIMARY KEY,
@@ -198,9 +198,9 @@ CONSTRAINTS (DDL)
       );
       An attribute can be PK and FK both in a table.
 
-
-ALTER OPERATIONS -
-
+   
+    ALTER OPERATIONS -
+ 
      Changes schema 
      1. ADD
        Add new column.
@@ -229,74 +229,74 @@ ALTER OPERATIONS -
        e.g., ALTER TABLE customer RENAME TO customer-details;
 
 
-DATA MANIPULATION LANGUAGE (DML)-
+    DATA MANIPULATION LANGUAGE (DML)-
 
-1. INSERT
-    INSERT INTO table-name(col1, col2, col3) VALUES (v1, v2, v3), (val1, val2, val3);
+    1. INSERT
+      INSERT INTO table-name(col1, col2, col3) VALUES (v1, v2, v3), (val1, val2, val3);
    
-3. UPDATE
-   UPDATE table-name SET col1 = 1, col2 = ‘abc’ WHERE id = 1;
+    2. UPDATE
+      UPDATE table-name SET col1 = 1, col2 = ‘abc’ WHERE id = 1;
+    
+    3. Update multiple rows e.g.,
+      UPDATE student SET standard = standard + 1;
    
-2. Update multiple rows e.g.,
-   UPDATE student SET standard = standard + 1;
+    4. ON UPDATE CASCADE
+       Can be added to the table while creating constraints. Suppose there is a situation where we have two tables such that primary key of one        table is the foreign key for another table. if we update the primary key of the first table then using the ON UPDATE CASCADE foreign key        of the second table automatically get updated.
    
-4. ON UPDATE CASCADE
-    Can be added to the table while creating constraints. Suppose there is a situation where we have two tables such that primary key of one        table is the foreign key for another table. if we update the primary key of the first table then using the ON UPDATE CASCADE foreign key of     the second table automatically get updated.
-   
-5. DELETE
-   DELETE FROM table-name WHERE id = 1;
-   DELETE FROM table-name; //all rows will be deleted.
-   DELETE CASCADE - (to overcome DELETE constraint of Referential constraints)
-   What would happen to child entry if parent table’s entry is deleted?
-   CREATE TABLE ORDER (
+    5. DELETE
+     DELETE FROM table-name WHERE id = 1;
+     DELETE FROM table-name; //all rows will be deleted.
+     DELETE CASCADE - (to overcome DELETE constraint of Referential constraints)
+     What would happen to child entry if parent table’s entry is deleted?
+    CREATE TABLE ORDER (
      order_id int PRIMARY KEY,
      delivery_date DATE,
      cust_id INT,
      FOREIGN KEY(cust_id) REFERENCES customer(id) ON DELETE CASCADE
- );
+     );
+  
+    6. ON DELETE NULL - (can FK have null values?)
+      CREATE TABLE ORDER (
+      order_id int PRIMARY KEY,
+      delivery_date DATE,
+      cust_id INT,
+      FOREIGN KEY(cust_id) REFERENCES customer(id) ON DELETE SET NULL
+     );
 
-6. ON DELETE NULL - (can FK have null values?)
-    CREATE TABLE ORDER (
-    order_id int PRIMARY KEY,
-    delivery_date DATE,
-    cust_id INT,
-    FOREIGN KEY(cust_id) REFERENCES customer(id) ON DELETE SET NULL
-   );
-
-7. REPLACE
-   Primarily used for already present tuple in a table.
-   As UPDATE, using REPLACE with the help of WHERE clause in PK, then that row will be replaced.
-   As INSERT, if there is no duplicate data new tuple will be inserted.
-   REPLACE INTO student (id, class) VALUES(4, 3);
-   REPLACE INTO table SET col1 = val1, col2 = val2;
+     7. REPLACE
+       Primarily used for already present tuple in a table.
+       As UPDATE, using REPLACE with the help of WHERE clause in PK, then that row will be replaced.
+       As INSERT, if there is no duplicate data new tuple will be inserted.
+       REPLACE INTO student (id, class) VALUES(4, 3);
+       REPLACE INTO table SET col1 = val1, col2 = val2;
 
 
+ 
+    JOINING TABLES-
 
-JOINING TABLES-
-
-  1. All RDBMS are relational in nature, we refer to other tables to get meaningful outcomes.
-  2. FK are used to do reference to other table.
+    1. All RDBMS are relational in nature, we refer to other tables to get meaningful outcomes.
+    2. FK are used to do reference to other table.
    
-  3. INNER JOIN
-    1. Returns a resultant table that has matching values from both the tables or all the tables.
-    2. SELECT column-list FROM table1 INNER JOIN table2 ON condition1
-    3. INNER JOIN table3 ON condition2;
-    4. Alias in MySQL (AS)
-      Aliases in MySQL is used to give a temporary name to a table or a column in a table for the purpose of a particular query. It works as a        nickname for expressing the tables or column names. It makes the query short and neat.
-    5. SELECT col_name AS alias_name FROM table_name;
-    6. SELECT col_name1, col_name2,... FROM table_name AS alias_name;
+    3. INNER JOIN
+      1. Returns a resultant table that has matching values from both the tables or all the tables.
+      2. SELECT column-list FROM table1 INNER JOIN table2 ON condition1
+      3. INNER JOIN table3 ON condition2;
+      4. Alias in MySQL (AS)
+         Aliases in MySQL is used to give a temporary name to a table or a column in a table for the purpose of a particular query. It works as          a nickname for expressing the tables or column names. It makes the query short and neat.
+      5. SELECT col_name AS alias_name FROM table_name;
+      6. SELECT col_name1, col_name2,... FROM table_name AS alias_name;
 
-  4. OUTER JOIN 
+    4. OUTER JOIN 
 
-   1. LEFT JOIN
+    1. LEFT JOIN
      1. This returns a resulting table that all the data from left table and the matched data from the right table.
      2. SELECT columns FROM table LEFT JOIN table2 ON Join_Condition;
 
-   2. RIGHT JOIN
-    1.  This returns a resulting table that all the data from right table and the matched data from the left table.
-    2.  SELECT columns FROM table RIGHT JOIN table2 ON join_cond;
+    2. RIGHT JOIN
+      1.  This returns a resulting table that all the data from right table and the matched data from the left table.
+      2.  SELECT columns FROM table RIGHT JOIN table2 ON join_cond;
 
-   3. FULL JOIN
+    3. FULL JOIN
       1. This returns a resulting table that contains all data when there is a match on left or right table data.
       2. Emulated in MySQL using LEFT and RIGHT JOIN.
       3. LEFT JOIN UNION RIGHT JOIN.
@@ -305,13 +305,13 @@ JOINING TABLES-
          SELECT columns FROM table1 as t1 RIGHT JOIN table2 as t2 ON t1.id = t2.id;
       5. UNION ALL, can also be used this will duplicate values as well while UNION gives unique values.
 
-   4. CROSS JOIN
+    4. CROSS JOIN
      1. This returns all the cartesian products of the data present in both tables. Hence, all possible variations are reflected in the output.
        used rarely in practical purpose.
      2. Table-1 has 10 rows and table-2 has 5, then resultant would have 50 rows.
      3. SELECT column-lists FROM table1 CROSS JOIN table2;
 
-   5. SELF JOIN
+    5. SELF JOIN
      1. It is used to get the output from a particular table when the same table is joined to itself.
      2. Used very less.
      3. Emulated using INNER JOIN.
@@ -322,7 +322,7 @@ JOINING TABLES-
    
 
 
-SET OPERATIONS----
+     SET OPERATIONS--
 
       Used to combine multiple select statements.
       Always gives distinct rows.
@@ -349,33 +349,35 @@ SET OPERATIONS----
 
 
     
-SUB QUERIES----
-   1. Outer query depends on inner query.
-   2. Alternative to joins.
-   3. Nested queries.
-   4. SELECT column_list(s) FROM table_name WHERE column_name OPERATOR
+    SUB QUERIES----
+
+  
+    1. Outer query depends on inner query.
+    2. Alternative to joins.
+    3. Nested queries.
+    4. SELECT column_list(s) FROM table_name WHERE column_name OPERATOR
       (SELECT column_list(s) FROM table_name [WHERE]);
-   5. e.g., SELECT * FROM table1 WHERE col1 IN (SELECT col1 FROM table1);
-   6. Sub queries exist mainly in 3 clauses
+    5. e.g., SELECT * FROM table1 WHERE col1 IN (SELECT col1 FROM table1);
+    6. Sub queries exist mainly in 3 clauses
        1. Inside a WHERE clause.
        2. Inside a FROM clause.    
        3. Inside a SELECT clause.
-   7. Subquery using FROM clause
+    7. Subquery using FROM clause
       SELECT MAX(rating) FROM (SELECT * FROM movie WHERE country = ‘India’) as temp;
-   8. Subquery using SELECT
+    8. Subquery using SELECT
       SELECT (SELECT column_list(s) FROM T_name WHERE condition), columnList(s) FROM T2_name WHERE   condition;
-   9. Derived Subquery
+    9. Derived Subquery
       SELECT columnLists(s) FROM (SELECT columnLists(s) FROM table_name WHERE [condition]) as new_table_name;
-   10. Co-related sub-queries
-      With a normal nested subquery, the inner SELECT query runs first and executes once, returning values to be used by the main query. A correlated subquery, however, executes once for each candidate row considered by the outer query. In other words, the inner query is driven by the outer query
+    10. Co-related sub-queries
+      With a normal nested subquery, the inner SELECT query runs first and executes once, returning values to be used by the main query. A            correlated subquery, however, executes once for each candidate row considered by the outer query. In other words, the inner query is            driven by the outer query
 
 
 
 
       MySQL VIEWS----
-     1. A view is a database object that has no values. Its contents are based on the basetable.    It contains rows and columns similar to the real table.
-     2. In MySQL, the View is a virtual table created by a query by joining one or more tables. It is operated similarly to the base table but does not contain any data of its own.
-     3. The View and table have one main difference that the views are definitions built on top of other tables (or views). If any changes occur in the underlying table, the same changes reflected in the View also.
+     1. A view is a database object that has no values. Its contents are based on the basetable.    It contains rows and columns similar to the         real table.
+     2. In MySQL, the View is a virtual table created by a query by joining one or more tables. It is operated similarly to the base table but          does not contain any data of its own.
+     3. The View and table have one main difference that the views are definitions built on top of other tables (or views). If any changes              occur in the underlying table, the same changes reflected in the View also.
      4. CREATE VIEW view_name AS SELECT columns FROM tables [WHERE conditions];
      5. ALTER VIEW view_name AS SELECT columns FROM table WHERE conditions;
      6. DROP VIEW IF EXISTS view_name;
